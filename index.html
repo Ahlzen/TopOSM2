@@ -39,7 +39,9 @@ var hillshade = L.tileLayer(tileurl, {name: 'hillshade'});
 var hillshadeX = L.tileLayer(tileurl, {name: 'hillshade-x'});
 var hillshadeXlight = L.tileLayer(tileurl, {name: 'hillshade-x-light'});
 var hillshadeXimhofA = L.tileLayer(tileurl, {name: 'hillshade-x-imhofA'});
+var hillshadeXimhofB = L.tileLayer(tileurl, {name: 'hillshade-x-imhofB'});
 var landcover = L.tileLayer(tileurl, {name: 'landcover'});
+var landcoverLightened = L.tileLayer(tileurl, {name: 'landcover-lightened'});
 var landcoverRaw = L.tileLayer(tileurl, {name: 'landcover-raw'});
 var contoursMask = L.tileLayer(tileurl, {name: 'contours-mask'});
 var contours = L.tileLayer(tileurl, {name: 'contours'});
@@ -48,11 +50,12 @@ var hydro = L.tileLayer(tileurl, {name: 'hydro'});
 var features = L.tileLayer(tileurl, {name: 'features'});
 
 var toposmCarto2 = L.tileLayer(tileurl, {name: 'toposmCarto2'});
+var toposmCarto2B = L.tileLayer(tileurl, {name: 'toposmCarto2B'});
 
 var map = L.map('map', {
   center: new L.LatLng(37.8, -122.3),
   zoom: 10,
-  layers: [toposmCarto2]
+  layers: [landcoverLightened]
 });
 
 var baseLayers = {
@@ -61,10 +64,13 @@ var baseLayers = {
   "Hillup: Hillshade (exp)": hillshadeX,
   "Hillup: Hillshade (exp, light)": hillshadeXlight,
   "Hillup: Hillshade (exp, Imhof A)": hillshadeXimhofA,
-  "TopOSM Carto2": toposmCarto2
+  "Hillup: Hillshade (exp, Imhof B)": hillshadeXimhofB,
+  "TopOSM Carto2": toposmCarto2,
+  "TopOSM Carto2B": toposmCarto2B
 };
 var overlays = {
   "landcover": landcover,
+  "landcover-lightened": landcoverLightened,
   "landcover-raw": landcoverRaw,
   "contours-mask": contoursMask,
   "contours": contours,

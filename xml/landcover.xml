@@ -7,14 +7,14 @@
 
 <Style name="landcover">
   <Rule>
-    &maxz8;
+    &maxz9;
     <RasterSymbolizer scaling="bilinear" />
   </Rule>
 </Style>
 
 <Style name="landcover2" image-filters="agg-stack-blur(2,2)">
   <Rule>
-    &minz9; &maxz11;
+    &minz10; &maxz11;
     <RasterSymbolizer scaling="bilinear" />
   </Rule>
 </Style>
@@ -67,7 +67,7 @@
     
     <Datasource>
       <Parameter name="type">gdal</Parameter>
-      <Parameter name="file">nlcd2006_2.vrt</Parameter>
+      <Parameter name="file">nlcd2006_3.vrt</Parameter>
     </Datasource>
 </Layer>
 </Map>

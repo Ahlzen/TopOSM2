@@ -26,6 +26,7 @@ Map {
 #contours200 {
   line-color: @maskVisible;
   line-width: @contourWidth;
+  [zoom=13] { line-width: @contourWidth * 0.8; }
   line-smooth: @contourSmooth;
   [zoom >= 15] {
     line-width: @contourWidthMajor;
@@ -46,6 +47,7 @@ Map {
 [zoom >= 13][zoom < 15]
 #contours1000 {
   line-width: @contourWidthMajor;
+  [zoom=13] { line-width: @contourWidthMajor * 0.8; }
   line-color: @maskVisible;
   line-smooth: @contourSmooth;
   text-name: "[height_ft]";
