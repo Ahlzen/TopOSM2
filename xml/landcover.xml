@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[
+<!ENTITY % utils SYSTEM "include/utils.inc">
+%utils;
+]>
+<Map background-color="#fff" srs="&srs900913;">
+
+<Style name="landcover">
+  <Rule>
+    &maxz8;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<Style name="landcover2" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    &minz9; &maxz11;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<Style name="landcover3" image-filters="agg-stack-blur(3,3)">
+  <Rule>
+    &minz12; &maxz13;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<Style name="landcover4" image-filters="agg-stack-blur(4,4)">
+  <Rule>
+    &minz14; &maxz15;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<Style name="landcover6" image-filters="agg-stack-blur(8,8)">
+  <Rule>
+    &minz16; &maxz17;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<Style name="landcover8" image-filters="agg-stack-blur(16,16)">
+  <Rule>
+    &minz18;
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+
+<!--
+<Style name="landcover12" image-filters="agg-stack-blur(32,32)">
+  <Rule>
+    <RasterSymbolizer scaling="bilinear" />
+  </Rule>
+</Style>
+-->
+
+
+<Layer name="nlcd2006" status="on">
+    <StyleName>landcover</StyleName>
+    <StyleName>landcover2</StyleName>
+    <StyleName>landcover3</StyleName>
+    <StyleName>landcover4</StyleName>
+    <StyleName>landcover6</StyleName>
+    <StyleName>landcover8</StyleName>
+    <!--StyleName>landcover12</StyleName-->
+    
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">nlcd2006_2.vrt</Parameter>
+    </Datasource>
+</Layer>
+</Map>

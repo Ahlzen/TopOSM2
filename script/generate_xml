@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Generates the mapnik style files and includes from
+# their respective carto templates.
+
+# Variable declarations on the form ${VAR} are substituted with
+# the value of the corresponding enviroment variable VAR.
+
+SOURCEDIR="carto"
+DESTDIR="processed"
+
+# awk program to substitute environment variables
+AWKFILTER='{while(match($0,"[$]{[^}]*}")){var=substr($0,RSTART+2,RLENGTH -3);gsub("[$]{"var"}",ENVIRON[var])}}1'
+
+# grep filter to remove millstone junk
+# see carto issue #212:
+# https://github.com/mapbox/carto/issues/212
+MILLSTONEFILTER="\[millstone\]"
+
+
+if [[ -z $TOPOSM_ENV_SET ]]; then
+    echo "Error: TopOSM environment not set."
+    exit 1
+fi
+
+# Generate mapnik XML from Carto templates
+mkdir -pv "$DESTDIR"
+for SRC in `ls ${SOURCEDIR}/*.mml`; do
+    echo "Processing $SRC..."
+    DST="${DESTDIR}/`basename $SRC .mml`.xml"
+        
+    $CARTO $SRC | \
+      grep -v "$MILLSTONEFILTER" | \
+      awk "$AWKFILTER" \
+      > $DST
+        
+    # read errors from output file
+    # (carto writes these to stdout and always returns 0)
+    cat $DST | grep "carto:"
+        
+done
+
+echo "Done."
+

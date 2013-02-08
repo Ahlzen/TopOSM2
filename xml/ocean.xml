@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[
+    <!ENTITY % utils SYSTEM "include/utils.inc">
+    <!ENTITY % colors SYSTEM "include/colors.inc">
+	<!ENTITY dbsettings SYSTEM "include/dbsettings.inc">
+	<!ENTITY extents SYSTEM "include/extents.inc">
+	%utils;
+	%colors;
+]>
+
+<Map background-color="transparent" srs="&srs900913;">
+
+<Style name="coastline">
+  <Rule>
+    <!-- Twice the actual width, since half will get filled in... -->
+    <LineSymbolizer stroke="&waterlinecolor;" stroke-width="1.5" />
+  </Rule>
+</Style>
+
+<Style name="ocean">
+  <Rule>
+    <PolygonSymbolizer fill="&waterfillcolor;" />
+  </Rule>
+</Style>
+
+
+<Layer name="water-polygons" status="on" srs="&srs900913;">
+    <StyleName>coastline</StyleName>
+    <StyleName>ocean</StyleName>
+    <Datasource>
+        &extents;
+        <Parameter name="type">shape</Parameter>
+        <Parameter name="file">/mnt/data/geodata/osm/water-polygons-split-3857/water_polygons</Parameter>
+    </Datasource>
+</Layer>
+
+</Map>

@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>MapViewer</title>
+<link rel="stylesheet" href="/leaflet-0.5/dist/leaflet.css" />
+<!--[if lte IE 8]>
+   <link rel="stylesheet" href="/leaflet-0.5/dist/leaflet.ie.css" />
+<![endif]-->
+<style type="text/css" rel="stylesheet">
+body { padding: 0px; margin: 0px; font-family: sans-serif; }
+#map { witdh: 100%; height: 100%; }
+#infobar { font-size: 8pt; text-align: right;
+   color: #ffe; background-color: #000; opacity: 0.7;
+   z-index: 1000; position: absolute; bottom: 0px; width: 100%; }
+a { color: #adf; text-decoration: none; }
+a:hover { text-decoration: underline; }
+#infobar span { margin: 2px 6px; }
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+<div id="infobar">  
+   <span id="latlon"></span> &bull; <span id="zoom"></span>
+   &bull;
+   <span>Data from <a href="http://www.openstreetmap.org">OpenStreetMap</a>, 
+   <a href="http://www.usgs.gov">USGS</a> and other sources. </span>
+   &bull;
+   <span>License: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a></span>
+</div>
+
+<script src="/leaflet-0.5/dist/leaflet.js"></script>
+<script type="text/javascript">
+
+var tileurl = 'http://deltaii:8080/{name}/{z}/{x}/{y}.png';
+var maxzoom = 18;
+
+var blank = L.tileLayer(tileurl, {name: 'blank'});
+//var osm = L.tileLayer(tileurl, {name: 'osm'});
+var hillshade = L.tileLayer(tileurl, {name: 'hillshade'});
+var hillshadeX = L.tileLayer(tileurl, {name: 'hillshade-x'});
+var hillshadeXlight = L.tileLayer(tileurl, {name: 'hillshade-x-light'});
+var hillshadeXimhofA = L.tileLayer(tileurl, {name: 'hillshade-x-imhofA'});
+var landcover = L.tileLayer(tileurl, {name: 'landcover'});
+var landcoverRaw = L.tileLayer(tileurl, {name: 'landcover-raw'});
+//var landcoverrelief = L.tileLayer(tileurl, {name: 'landcoverrelief'});
+
+//var toposmCartoContours = L.tileLayer(tileurl, {name: 'toposmCartoContours'});
+//var toposmCartoFeatures = L.tileLayer(tileurl, {name: 'toposmCartoFeatures'});
+
+var contoursMask = L.tileLayer(tileurl, {name: 'contours-mask'});
+var contours = L.tileLayer(tileurl, {name: 'contours'});
+var ocean = L.tileLayer(tileurl, {name: 'ocean'});
+var features = L.tileLayer(tileurl, {name: 'features'});
+
+var toposmCarto2 = L.tileLayer(tileurl, {name: 'toposmCarto2'});
+
+var map = L.map('map', {
+  center: new L.LatLng(37.5, -122.2),
+  zoom: 14,
+  layers: [ocean, features]
+});
+
+var baseLayers = {
+  "Blank": blank,
+  "Hillup: Hillshade": hillshade,
+  "Hillup: Hillshade (exp)": hillshadeX,
+  "Hillup: Hillshade (exp, light)": hillshadeXlight,
+  "Hillup: Hillshade (exp, Imhof A)": hillshadeXimhofA,
+  "TopOSM Carto2": toposmCarto2
+};
+var overlays = {
+  "landcover": landcover,
+  "landcover-raw": landcoverRaw,
+  "contours-mask": contoursMask,
+  "contours": contours,
+  "ocean": ocean,
+  "features": features
+};
+L.control.layers(baseLayers, overlays).addTo(map);
+
+// Update page
+updateZoomLevel();
+updateLatLong(map.getCenter());
+
+// Hook up events
+map.on('zoomend', updateZoomLevel);
+map.on('mousemove', function(e){updateLatLong(e.latlng)});
+
+function updateZoomLevel() {
+   z = map.getZoom();
+   document.getElementById('zoom').innerHTML = 'z' + z;
+}  
+function updateLatLong(ll) {
+   document.getElementById('latlon').innerHTML =
+      ll.lat.toFixed(3) + ', ' + ll.lng.toFixed(3);
+}
+
+</script>
+</body>
+</html>
