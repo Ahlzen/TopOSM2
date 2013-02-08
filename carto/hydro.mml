@@ -1,0 +1,200 @@
+{
+  "bounds": [
+    -180,
+    -85.05112877980659,
+    180,
+    85.05112877980659
+  ],
+  "center": [
+    0,
+    0,
+    2
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 22,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "constants.mss",
+    "nhd.mss"
+  ],
+  "Layer": [
+    {
+      "name": "NHDTunnelFlowline",
+      "id": "NHDTunnelFlowline",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",   
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_flowline\nWHERE fcode BETWEEN 42800 AND 42899\n) AS flowline",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDIntermittentFlowline",
+      "id": "NHDIntermittentFlowline",
+      "class": "intermittentHydro",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_flowline\nWHERE fcode IN (46001,46003,46007)) AS linefeature",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }      
+    },
+    {
+      "name": "NHDPermanentFlowlineLowzoom",
+      "id": "NHDPermanentFlowlineLowzoom",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_flowline_major\nWHERE fcode IN (33600,33700,46000,46004,46005,46006,55800)\n) AS flowline",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }      
+    },
+    {
+      "name": "NHDPermanentFlowline",
+      "id": "NHDPermanentFlowline",
+      "class": "permanentHydro",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_flowline\nWHERE fcode IN (33600,33700,46000,46004,46005,46006,55800)\n) AS flowline",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }      
+    },
+    {
+      "name": "NHDLine",
+      "geometry": "linestring",
+      "id": "NHDLine",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\n       FROM ${NHD_TABLE_PREFIX}_line) AS linefeature",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDPoint",
+      "id": "NHDPoint",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "point",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name FROM ${NHD_TABLE_PREFIX}_point)\nAS pointfeature",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDPermanentWaterbodyLowzoom",
+      "id": "NHDPermanentWaterbodyLowzoom",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "polygon",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, areasqkm AS size\nFROM ${NHD_TABLE_PREFIX}_waterbody_major\nWHERE fcode IN (3900,39003,39004,31200,36200,39800,45500,49300,53700)\nOR (fcode BETWEEN 39009 AND 39012)\nOR (fcode BETWEEN 43600 AND 43699)\n) AS permanentWaterbody",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDPermanentWaterbody",
+      "id": "NHDPermanentWaterbody",
+      "class": "permanentHydro",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "polygon",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, areasqkm AS size\nFROM ${NHD_TABLE_PREFIX}_waterbody\nWHERE fcode IN (3900,39003,39004,31200,36200,39800,45500,49300,53700)\nOR (fcode BETWEEN 39009 AND 39012)\nOR (fcode BETWEEN 43600 AND 43699)\n) AS permanentWaterbody",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDPermanentArea",
+      "id": "NHDPermanentArea",
+      "class": "permanentHydro",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "polygon",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, areasqkm AS size\nFROM ${NHD_TABLE_PREFIX}_area\nWHERE fcode IN (33600,33700,46000,46004,46005,46006,55800)\n) AS area",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDNonwaterFill",
+      "id": "NHDNonwaterFill",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "polygon",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name\nFROM ${NHD_TABLE_PREFIX}_area \nWHERE fcode IN (34300, 34305, 34306, 36400, 37300,\n43100, 45400, 45403, 45500, 46100)) AS nonwaterfill",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }
+    },
+    {
+      "name": "NHDNonwaterLine",
+      "id": "NHDNonwaterLine",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_line\n) AS line",
+        "extent": "${EXTENTS_MERCATOR}",
+        "key_field": "",
+        "geometry_field": "",
+        "dbname": "gis"
+      }      
+    }
+  ],
+  "scale": 1,
+  "metatile": 2
+}

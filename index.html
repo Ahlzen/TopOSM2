@@ -35,29 +35,24 @@ var tileurl = 'http://deltaii:8080/{name}/{z}/{x}/{y}.png';
 var maxzoom = 18;
 
 var blank = L.tileLayer(tileurl, {name: 'blank'});
-//var osm = L.tileLayer(tileurl, {name: 'osm'});
 var hillshade = L.tileLayer(tileurl, {name: 'hillshade'});
 var hillshadeX = L.tileLayer(tileurl, {name: 'hillshade-x'});
 var hillshadeXlight = L.tileLayer(tileurl, {name: 'hillshade-x-light'});
 var hillshadeXimhofA = L.tileLayer(tileurl, {name: 'hillshade-x-imhofA'});
 var landcover = L.tileLayer(tileurl, {name: 'landcover'});
 var landcoverRaw = L.tileLayer(tileurl, {name: 'landcover-raw'});
-//var landcoverrelief = L.tileLayer(tileurl, {name: 'landcoverrelief'});
-
-//var toposmCartoContours = L.tileLayer(tileurl, {name: 'toposmCartoContours'});
-//var toposmCartoFeatures = L.tileLayer(tileurl, {name: 'toposmCartoFeatures'});
-
 var contoursMask = L.tileLayer(tileurl, {name: 'contours-mask'});
 var contours = L.tileLayer(tileurl, {name: 'contours'});
 var ocean = L.tileLayer(tileurl, {name: 'ocean'});
+var hydro = L.tileLayer(tileurl, {name: 'hydro'});
 var features = L.tileLayer(tileurl, {name: 'features'});
 
 var toposmCarto2 = L.tileLayer(tileurl, {name: 'toposmCarto2'});
 
 var map = L.map('map', {
-  center: new L.LatLng(37.5, -122.2),
-  zoom: 14,
-  layers: [ocean, features]
+  center: new L.LatLng(37.8, -122.3),
+  zoom: 10,
+  layers: [toposmCarto2]
 });
 
 var baseLayers = {
@@ -74,6 +69,7 @@ var overlays = {
   "contours-mask": contoursMask,
   "contours": contours,
   "ocean": ocean,
+  "hydro": hydro,
   "features": features
 };
 L.control.layers(baseLayers, overlays).addTo(map);
