@@ -21,16 +21,6 @@
   ],
   "Layer": [
     {
-      "id": "countries",
-      "name": "countries",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "geometry": "polygon",
-      "Datasource": {
-        "file": "http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.4.0/cultural/10m-admin-0-countries.zip",
-        "type": "shape"
-      }
-    },
-    {
       "geometry": "linestring",
       "extent": [
         -179.99999692067183,
@@ -40,13 +30,13 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, height_ft\nFROM cadetail_contours_50ft)\nAS contours",
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE}) AS contours",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
-        "host": "deltaii",
-        "dbname": "gis"
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}"
       },
       "id": "contours50",
       "class": "",
@@ -65,13 +55,13 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, height_ft\nFROM cadetail_contours_50ft\nWHERE (height_ft % 200) = 0\n) AS contours\n",
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 200) = 0) AS contours\n",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
-        "host": "deltaii",
-        "dbname": "gis"
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}"
       },
       "id": "contours200",
       "class": "",
@@ -90,13 +80,13 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, height_ft\nFROM cadetail_contours_50ft\nWHERE (height_ft % 1000) = 0)\nAS contours",
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 1000) = 0) AS contours",
         "key_field": "",
         "geometry_field": "way",
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
-        "host": "deltaii",
-        "dbname": "gis"
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}"
       },
       "id": "contours1000",
       "class": "",

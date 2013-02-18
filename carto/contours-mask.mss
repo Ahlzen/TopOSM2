@@ -2,19 +2,6 @@ Map {
   background-color: @maskHidden;
 }
 
-/*
-#countries {
-  ::outline {
-    line-color: #85c5d3;
-    line-width: 2;
-    line-join: round;
-  }
-  polygon-fill: #eee;
-}
-*/
-
-
-
 [zoom >= 15]
 #contours50 {
   line-color: @maskVisible;
