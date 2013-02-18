@@ -34,7 +34,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -51,7 +52,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     },
     {
@@ -67,7 +69,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     },
     {
@@ -84,7 +87,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     },
     {
@@ -101,7 +105,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -118,7 +123,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -134,7 +140,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -151,7 +158,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     
@@ -169,7 +177,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -185,7 +194,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     },
     {
@@ -199,7 +209,8 @@
         "table": "(SELECT way, fcode, gnis_name, lengthkm AS size\nFROM ${NHD_TABLE_PREFIX}_flowline_major\nWHERE fcode IN (55800)\n) AS artificial_path",
         "extent": "${EXTENTS_MERCATOR}",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     },
     {
@@ -216,7 +227,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }
     },
     {
@@ -233,7 +245,8 @@
         "key_field": "",
         "geometry_field": "",
         "dbname": "${DB_NAME}",
-	"host": "${DB_HOST}"
+	"host": "${DB_HOST}",
+	"user": "${DB_USER}"
       }      
     }
   ],

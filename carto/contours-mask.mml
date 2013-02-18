@@ -36,7 +36,8 @@
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
         "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}"
+        "dbname": "${DB_NAME}",
+	"user": "${DB_USER}"
       },
       "id": "contours50",
       "class": "",
@@ -61,7 +62,8 @@
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
         "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}"
+        "dbname": "${DB_NAME}",
+	"user": "${DB_USER}"
       },
       "id": "contours200",
       "class": "",
@@ -86,7 +88,8 @@
         "extent_cache": "custom",
         "extent": "-20037508,-19929239,20037508,19929239",
         "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}"
+        "dbname": "${DB_NAME}",
+	"user": "${DB_USER}"
       },
       "id": "contours1000",
       "class": "",
