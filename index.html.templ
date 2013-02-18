@@ -1,9 +1,16 @@
 <html>
+
+<!--
+Test page for TopOSM2 layers.
+
+Change tileurl below to match your setup.
+-->
+
 <head>
 <title>MapViewer</title>
-<link rel="stylesheet" href="/leaflet-0.5/dist/leaflet.css" />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
 <!--[if lte IE 8]>
-   <link rel="stylesheet" href="/leaflet-0.5/dist/leaflet.ie.css" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
 <![endif]-->
 <style type="text/css" rel="stylesheet">
 body { padding: 0px; margin: 0px; font-family: sans-serif; }
@@ -28,10 +35,10 @@ a:hover { text-decoration: underline; }
    <span>License: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a></span>
 </div>
 
-<script src="/leaflet-0.5/dist/leaflet.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 <script type="text/javascript">
 
-var tileurl = 'http://deltaii:8080/{name}/{z}/{x}/{y}.png';
+var tileurl = 'http://localhost:8080/{name}/{z}/{x}/{y}.png';
 var maxzoom = 18;
 
 var blank = L.tileLayer(tileurl, {name: 'blank'});
