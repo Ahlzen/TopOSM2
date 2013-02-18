@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [[ -z $TOPOSM_ENV_SET ]]; then
+    echo "Error: TopOSM environment not set."
+    exit 1
+fi
+
+if [[ $# -ne "3" ]] ; then
+   echo "syntax: $0 <layer> <z_from> <z_to>"
+   exit 1
+fi
+
+
+LAYER=$1
+ZFROM=$2
+ZTO=$3
+LOGFILE="render.log"
+
+# remove existing tiles
+#echo -n "Removing existing tiles... "
+#for l in `seq $ZFROM $ZTO` ; do
+#   rm -Rf $TILEDIR/$LAYER/$l
+#done
+#echo "done."
+
+SUMMARY="Rendering $LAYER ($YMINLL,$XMINLL,$YMAXLL,$XMAXLL) z$ZFROM-$ZTO"
+echo $SUMMARY
+
+echo >> $LOGFILE
+echo $SUMMARY >> $LOGFILE
+date --iso-8601=seconds >> $LOGFILE
+
+# Time and log rendering
+/usr/bin/time -a -o $LOGFILE -p \
+  tilestache-seed.py \
+  --config=tilestache.cfg \
+  --bbox $YMINLL $XMINLL $YMAXLL $XMAXLL \
+  --layer $LAYER \
+  --output-directory=$TILE_DIR \
+  `seq $ZFROM $ZTO`
+
+echo "done."
+
