@@ -1,5 +1,7 @@
 # TopOSM 2 #
 
+https://github.com/Ahlzen/TopOSM2
+
 A system for rendering OpenStreetMap based topographic maps.
 
 *NOTE: This project is in early development and probably very incomplete*
@@ -45,6 +47,8 @@ TopOSM runs on Linux. It may run it on other platforms as well, but I have not t
 
 * Carto parser
 
+* GDAL/OGR (reasonably recent version)
+
 
 ### Data ###
 
@@ -64,14 +68,12 @@ TopOSM runs on Linux. It may run it on other platforms as well, but I have not t
 
 ## Setup ##
 
-TODO: Elaborate...
-
-NOTES:
+TODO
 
 * For now, use the contour generation script from TopOSM.
 
 * Currently, some preprocessing of the imported planet is
-required. For now, use the import script from the TopOSM.
+required. For now, use the import script from TopOSM.
 
 https://github.com/Ahlzen/TopOSM
 
@@ -82,5 +84,6 @@ TopOSM2 is licensed under GPLv2.
 
 http://www.gnu.org/licenses/gpl-2.0.html
 
-Created by Lars Ahlzen (lars@ahlzen.com), with contributions from Ian Dees (hosting, rendering and troubleshooting), Phil Gold (patches and style improvements), Kevin Kenny (improved NHD rendering, misc patches), Yves Cainaud (legend), Richard Weait (shield graphics), Mike Migurski (hosting) and others.
+Created by Lars Ahlzen (lars@ahlzen.com), with contributions from Ian Dees (hosting, rendering and troubleshooting), Phil Gold (patches and style improvements), Kevin Kenny (improved NHD rendering, misc patches), Yves Cainaud (legend), Richard Weait (shield graphics), Mike Migurski (hosting,
+suggestions) and others.
 
