@@ -1,14 +1,3 @@
-/****** Global constants ******/
-
-/*
-@s is a global "scale" for text sizes, line widths etc.
-Defaults to 1.0 for standard on-screen viewing.
-Use higher values for high-resolution renderings such
-as bitmaps for printing, hi-res "retina" tiles etc.
-*/
-@s:                     1.0;
-
-
 /****** Colors ******/
 
 /* Misc fills */
