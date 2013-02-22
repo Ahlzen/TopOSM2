@@ -58,8 +58,8 @@ TopOSM runs on Linux. It may run it on other platforms as well, but I have not t
   http://openstreetmapdata.com/data/water-polygons
 
 * National Elevation Dataset (NED) GeoTIFF tiles.
-  These are used for contour generation and, with minor
-  modifications, can be used as a source for Hillup.
+  These are used for contour generation, and can be used as
+  a source for Hillup.
 
 * NLCD2006 Landcover data
   http://www.mrlc.gov/nlcd06_data.php
@@ -71,9 +71,6 @@ TopOSM runs on Linux. It may run it on other platforms as well, but I have not t
 TODO
 
 * For now, use the contour generation script from TopOSM.
-
-* Currently, some preprocessing of the imported planet is
-required. For now, use the import script from TopOSM.
 
 https://github.com/Ahlzen/TopOSM
 

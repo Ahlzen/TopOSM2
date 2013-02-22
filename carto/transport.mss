@@ -27,38 +27,29 @@ Map {
     [highway='trunk']    { line-width: 1.5*@s; }
     [highway='primary']  { line-width: 0.7*@s; }
   }
-  
-  // Shields
-  ::interstateShields [roadtype='I'][zoom>=6][zoom<=8],
-  ::usShields [roadtype='U'][zoom>=7][zoom<=8]
-  //::stateShields [roadtype='S'][zoom=8]
+   
+  ::interstateShields [interstate!=''][zoom>=6][zoom<=8],
+  ::usShields [usroute!=''][zoom>=7][zoom<=8]
   {
-    shield-name: "[roadnumber]";
     shield-placement: line;
     shield-face-name: "DejaVu Sans Bold";
     shield-avoid-edges: true;
-    shield-min-distance: 100;
-    shield-spacing: 500;
-    [roadtype='I'] {
-      shield-fill: white;
-      shield-size: 8;
-      shield-file: url(../symbols/shield-interstate.svg);
-      // TODO: Add when supported by Carto
-      //[textlen<=2] { shield-transform: scale(0.7, 0.7); }
-      //[textlen>=3] { shield-transform: scale(0.9, 0.75); }
+    shield-min-distance: 200;
+    shield-spacing: 600;
+    shield-size: 8;
+    [interstate!=''] {
+       shield-name: "[interstate]";
+       shield-fill: white;
+       shield-file: url(../symbols/shield-interstate.svg);
     }
-    [roadtype='U'] {
-      shield-fill: black;
-      shield-size: 8;
-      shield-file: url(../symbols/shield-us.svg);
+    [usroute!=''] {
+       shield-name: "[usroute]";
+       shield-fill: black;
+       shield-file: url(../symbols/shield-us.svg);
     }
-    /*
-    [roadtype='S'] {
-      shield-fill: black;
-      shield-size: 7;
-      shield-file: url(../symbols/shield-state.svg);
-    }
-    */
+    // TODO: Scale shields when supported by Carto
+    //[textlen<=2] { shield-transform: scale(0.7, 0.7); }
+    //[textlen>=3] { shield-transform: scale(0.9, 0.75); }
   }
 }
 
@@ -344,34 +335,29 @@ Bridge outlines, shields and labels are included here too.
   }
   
   // Shields
-  ::interstateShields [roadtype='I'],
-  ::usShields [roadtype='U'],
-  ::stateShields [roadtype='S']
+  ::interstateShields [interstate!=''],
+  ::usShields [usroute!='']
+  // TODO: Add state shields
   {
-    shield-name: "[roadnumber]";
     shield-placement: line;
     shield-face-name: "DejaVu Sans Bold";
     shield-avoid-edges: true;
     shield-min-distance: 200;
     shield-spacing: 600;
-    [roadtype='I'] {
-      shield-fill: white;
-      shield-size: 8;
-      shield-file: url(../symbols/shield-interstate.svg);
-      // TODO: Add when supported by Carto
-      //[textlen<=2] { shield-transform: scale(0.7, 0.7); }
-      //[textlen>=3] { shield-transform: scale(0.9, 0.75); }
+    shield-size: 8;
+    [interstate!=''] {
+       shield-name: "[interstate]";
+       shield-fill: white;
+       shield-file: url(../symbols/shield-interstate.svg);
     }
-    [roadtype='U'] {
-      shield-fill: black;
-      shield-size: 8;
-      shield-file: url(../symbols/shield-us.svg);
+    [usroute!=''] {
+       shield-name: "[usroute]";
+       shield-fill: black;
+       shield-file: url(../symbols/shield-us.svg);
     }
-    [roadtype='S'] {
-      shield-fill: black;
-      shield-size: 8;
-      shield-file: url(../symbols/shield-state.svg);
-    }
+    // TODO: Scale shields when supported by Carto
+    //[textlen<=2] { shield-transform: scale(0.7, 0.7); }
+    //[textlen>=3] { shield-transform: scale(0.9, 0.75); }
   }
   
   // Road labels
