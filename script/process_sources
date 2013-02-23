@@ -41,12 +41,26 @@ for SRC in `ls ${SOURCEDIR}/*.mml`; do
     cat $DST | grep "carto:"
 done
 
-# Process xml,inc,vrt,cfg files
-for SRC in `ls ${SOURCEDIR}/*.{xml,inc,vrt,cfg}`; do
+# Process xml,inc,cfg files
+for SRC in `ls ${SOURCEDIR}/*.{xml,inc,cfg}`; do
     echo "Processing $SRC..."
     DST="${DESTDIR}/`basename $SRC`"        
     cat $SRC | awk "$AWKFILTER" > $DST
 done
+
+# Generate VRT file for NLCD.
+# The sed expressions replace the color table from the
+# original file with our custom one.
+mkdir -pv "$TEMP_DIR"
+echo "Building VRT file for NLCD..."
+gdalbuildvrt "${TEMP_DIR}/nlcd2006.vrt" "${NLCD_FILE}"
+cat "${TEMP_DIR}/nlcd2006.vrt" | awk "$AWKFILTER" | sed \
+    -e "/<ColorTable>/ d" \
+    -e "/<Entry .*\/>/ d" \
+    -e "/<\/ColorTable>/ {
+    r sources/nlcdColortable
+    d
+    }" > "processed/nlcd2006.vrt"
 
 echo "Done."
 
