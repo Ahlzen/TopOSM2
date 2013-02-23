@@ -3,6 +3,16 @@ Map {
 }
 
 
+// Preferred fonts for hydrography
+
+@hydroFont:
+    "Gentium Basic Bold Italic",
+    "Bitstream Charter Bold Italic",
+    "DejaVu Serif Bold Italic";
+
+@hydroSymbolFont:
+    "DejaVu Sans Book";
+
 
 // Low zoom levels
 
@@ -22,7 +32,7 @@ Map {
     text-fill: @waterline;
     text-placement: line;
     text-max-char-angle-delta: 20;
-    text-face-name: 'Gentium Italic';
+    text-face-name: @hydroFont;
     text-halo-fill: @waterfill;
     text-halo-radius: 1;
     [zoom=8] { text-size: 9; text-character-spacing: 1; }
@@ -43,7 +53,7 @@ Map {
   {
     text-name: "[gnis_name]";
     text-fill: @waterline;
-    text-face-name: 'Gentium Italic';
+    text-face-name: @hydroFont;
     text-halo-fill: @waterfill;
     text-halo-radius: 1;
     [zoom=8] { text-size: 10; }
@@ -83,7 +93,7 @@ Map {
   {
     text-name: "[gnis_name]";
     text-fill: @waterline;
-    text-face-name: 'Gentium Italic';
+    text-face-name: @hydroFont;
     text-halo-fill: @waterfill;
     text-halo-radius: 1;
     text-size: 12;
@@ -119,7 +129,7 @@ Map {
     text-allow-overlap: true;
     text-vertical-alignment: middle;
     text-horizontal-alignment: middle;
-    text-face-name: 'DejaVu Sans Book';
+    text-face-name: @hydroSymbolFont;
   }
   [fcode=@nhdGagingStation] {
     marker-width: 5;
@@ -193,7 +203,7 @@ Map {
 [zoom>=11] #NHDFlowlineLabels
 {
   text-name: "[gnis_name]";
-  text-face-name: 'Gentium Italic';
+  text-face-name: @hydroFont;
   text-fill: @waterline;
   text-halo-fill: @waterfill;
   text-halo-radius: 1;
