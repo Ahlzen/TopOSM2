@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map[
-<!ENTITY % utils SYSTEM "include/utils.inc">
-%utils;
+   <!ENTITY % utils SYSTEM "utils.inc">
+   %utils;
 ]>
+
+<!-- TODO: Rewrite in Carto, using constants from constants.mss -->
+
 <Map background-color="#fff" srs="&srs900913;">
 
 <Style name="landcover">
@@ -33,41 +36,31 @@
   </Rule>
 </Style>
 
-<Style name="landcover6" image-filters="agg-stack-blur(8,8)">
+<Style name="landcover8" image-filters="agg-stack-blur(8,8)">
   <Rule>
     &minz16; &maxz17;
     <RasterSymbolizer scaling="bilinear" />
   </Rule>
 </Style>
 
-<Style name="landcover8" image-filters="agg-stack-blur(16,16)">
+<Style name="landcover16" image-filters="agg-stack-blur(16,16)">
   <Rule>
     &minz18;
     <RasterSymbolizer scaling="bilinear" />
   </Rule>
 </Style>
 
-<!--
-<Style name="landcover12" image-filters="agg-stack-blur(32,32)">
-  <Rule>
-    <RasterSymbolizer scaling="bilinear" />
-  </Rule>
-</Style>
--->
-
-
 <Layer name="nlcd2006" status="on">
     <StyleName>landcover</StyleName>
     <StyleName>landcover2</StyleName>
     <StyleName>landcover3</StyleName>
     <StyleName>landcover4</StyleName>
-    <StyleName>landcover6</StyleName>
     <StyleName>landcover8</StyleName>
-    <!--StyleName>landcover12</StyleName-->
-    
+    <StyleName>landcover16</StyleName>    
     <Datasource>
       <Parameter name="type">gdal</Parameter>
-      <Parameter name="file">nlcd2006_3.vrt</Parameter>
+      <Parameter name="file">nlcd2006.vrt</Parameter>
     </Datasource>
 </Layer>
+
 </Map>

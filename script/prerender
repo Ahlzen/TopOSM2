@@ -33,7 +33,7 @@ date --iso-8601=seconds >> $LOGFILE
 # Time and log rendering
 /usr/bin/time -a -o $LOGFILE -p \
   tilestache-seed.py \
-  --config=tilestache.cfg \
+  --config=processed/tilestache.cfg \
   --bbox $YMINLL $XMINLL $YMAXLL $XMAXLL \
   --layer $LAYER \
   --output-directory=$TILE_DIR \

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[
+   <!ENTITY % utils SYSTEM "utils.inc">
+   %utils;
+]>
+
+<!-- TODO: Rewrite in Carto, using constants from constants.mss -->
+
+<Map background-color="transparent" srs="&srs900913;">
+
+<Style name="coastline">
+   <Rule>
+      <!-- Twice the actual width, since half will get filled in... -->
+      <LineSymbolizer stroke="#1e6ea3" stroke-width="1.5" />
+   </Rule>
+</Style>
+
+<Style name="ocean">
+   <Rule>
+      <PolygonSymbolizer fill="#d1e8f8" />
+   </Rule>
+</Style>
+
+<Layer name="water-polygons" status="on" srs="&srs900913;">
+   <StyleName>coastline</StyleName>
+   <StyleName>ocean</StyleName>
+   <Datasource>        
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">${WATER_POLYGONS_DIR}/water_polygons</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">${EXTENTS_MERCATOR}</Parameter>
+   </Datasource>
+</Layer>
+
+</Map>
+
