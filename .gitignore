@@ -1,4 +1,6 @@
-carto/cache
-carto/layers
 processed
 set-toposm-env
+render.log
+index.html
+temp
+
