@@ -23,6 +23,9 @@
   ],
   "Layer": [
     {
+      "name": "statePolygons",
+      "id": "statePoly",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         "type": "postgis",
         "table": "(SELECT way, name,ref,way_area FROM ${DB_PREFIX}_polygon WHERE \"boundary\" = 'administrative' AND admin_level='4') AS statePoly",
@@ -30,14 +33,9 @@
         "host": "${DB_HOST}",
         "dbname": "${DB_NAME}",
         "user": "${DB_USER}"
-      },
-      "id": "statePoly",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "statePolygons"
+      }
     },
     {
-      "status": "on",
       "name": "transportLowzoom",
       "id": "transportLowzoom",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -51,7 +49,6 @@
       }
     },
     {
-      "status": "on",
       "name": "transportHizoom",
       "id": "transportHizoom",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -65,6 +62,9 @@
       }
     },
     {
+      "name": "placenames",
+      "id": "placenames",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         "type": "postgis",
         "table": "(SELECT way, name, place, CASE WHEN place = 'city' THEN 2 WHEN place = 'town' THEN 4 WHEN place = 'suburb' THEN 5 WHEN place = 'village' THEN 6 WHEN place = 'hamlet' THEN 7 WHEN place = 'island' THEN 8 WHEN place = 'locality' THEN 9 ELSE 10 END AS priority FROM ${DB_PREFIX}_point WHERE place IS NOT NULL AND name IS NOT NULL ORDER BY priority) AS places",
@@ -72,10 +72,7 @@
         "dbname": "${DB_NAME}",
         "host": "${DB_HOST}",
         "user": "${DB_USER}"
-      },
-      "id": "placenames",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "placenames"
+      }
     }
   ],
   "scale": 1,
