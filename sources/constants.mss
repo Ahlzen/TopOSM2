@@ -20,6 +20,10 @@
 @contourFont:           "Liberation Serif Bold Italic";
 @contourTextSize:       12;
 
+/* Mountain peaks */
+@peakColor:             #643;
+@peakFont:              "DejaVu Serif Book"; // <-- TODO: Fix
+
 /* Hydrography */
 @waterline:             #1e6ea3;
 @waterfill:             #d1e8f8;
