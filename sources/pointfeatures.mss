@@ -18,7 +18,7 @@ Map {
        point-transform: scale(6.0, 6.0);
        text-dy: 8;
        text-size: 11;
-       ::elevation {
+       ::elevation [ele_ft!=""] {
          text-name: [ele_ft] + ' ft';
          text-face-name: @peakFont; /// <- todo: fix
          text-size: 10;
