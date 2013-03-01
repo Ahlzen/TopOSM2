@@ -61,12 +61,25 @@
       }
     },
     {
+      "name": "peaks",
+      "id": "peaks",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, name, CAST(ROUND(CASE WHEN ele SIMILAR TO '[0-9. ]+m' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC)*3.2787 WHEN ele SIMILAR TO '[0-9. ]+ft' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)-1) AS NUMERIC) WHEN ele SIMILAR TO '[0-9. ]+''' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC) WHEN ele SIMILAR TO '[0-9.]+' THEN CAST(ele AS NUMERIC)*3.2787 ELSE null END, 0) AS INT) AS ele_ft FROM ${DB_PREFIX}_point WHERE \"natural\" = 'peak') AS peaks",
+        "extent": "${EXTENTS_MERCATOR}",
+        "dbname": "${DB_NAME}",
+        "host": "${DB_HOST}",
+        "user": "${DB_USER}"
+      }
+    },
+    {
       "name": "pointfeatures",
       "id": "pointfeatures",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, name, \"natural\", CAST(ROUND(CASE WHEN ele SIMILAR TO '[0-9. ]+m' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC)*3.2787 WHEN ele SIMILAR TO '[0-9. ]+ft' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)-1) AS NUMERIC) WHEN ele SIMILAR TO '[0-9. ]+''' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC) WHEN ele SIMILAR TO '[0-9.]+' THEN CAST(ele AS NUMERIC)*3.2787 ELSE null END, 0) AS INT) AS ele_ft FROM ${DB_PREFIX}_point WHERE \"natural\" IS NOT NULL) AS pointfeatures",
+        "table": "(SELECT way, name, landuse, tourism, amenity, access FROM ${DB_PREFIX}_point WHERE tourism IN ('alpine_hut', 'viewpoint', 'picnic_site', 'camp_site', 'campground', 'information', 'map') OR amenity IN ('shelter', 'toilets', 'restrooms', 'drinking_water') OR landuse = 'quarry' OR (amenity = 'parking' AND NOT access IN ('private','destination','no'))) AS pointfeatures",
         "extent": "${EXTENTS_MERCATOR}",
         "dbname": "${DB_NAME}",
         "host": "${DB_HOST}",
