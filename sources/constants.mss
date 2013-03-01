@@ -14,6 +14,7 @@
 
 /* Contour lines */
 @contourColor:          #963;
+// NOTE: #963 with multiply and opacity 0.6 becomes #c2a385
 @contourWidth:          0.7;
 @contourWidthMajor:     1.2;
 @contourSmooth:         0.5;
