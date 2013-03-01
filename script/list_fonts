@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Utility script to list mapnik's registered fonts
+
+python -c "import mapnik;mapnik.register_fonts('$EXTRA_FONTS_DIR');print '\n'.join(mapnik.FontEngine.instance().face_names())" | less
