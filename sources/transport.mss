@@ -86,7 +86,7 @@ handled correctly.
       ::ties { line-width: 2; line-dasharray: 0.7, 5; line-color: @railroad; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
-    [railway='subway'],[railway='funicular'] {
+    [railway='subway'],[railway='funicular'],[railway='preserved'] {
       line-width: 1; line-color: @lightrail;
     }
   }
@@ -108,7 +108,7 @@ handled correctly.
       ::ties { line-width: 2.2; line-dasharray: 0.8, 6; line-color: @railroad; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
-    [railway='subway'],[railway='funicular'] {
+    [railway='subway'],[railway='funicular'],[railway='preserved'] {
       line-width: 1.2; line-color: @lightrail;
     }
   }
@@ -137,7 +137,7 @@ handled correctly.
       ::ties { line-width: 2.5; line-dasharray: 1.0, 8; line-color: @railroad; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
-    [railway='subway'],[railway='funicular'] {
+    [railway='subway'],[railway='funicular'],[railway='preserved'] {
       line-width: 1.5; line-color: @lightrail;
     }
   }
@@ -167,7 +167,7 @@ handled correctly.
       ::ties[tunnel='no'] { line-width: 4.5; line-dasharray: 1.3, 12; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
-    [railway='subway'],[railway='funicular'] {
+    [railway='subway'],[railway='funicular'],[railway='preserved'] {
       line-width: 2; line-color: @lightrail;
     }
   }  
@@ -197,7 +197,7 @@ handled correctly.
       ::ties { line-width: 6; line-dasharray: 2, 16; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
-    [railway='subway'],[railway='funicular'] {
+    [railway='subway'],[railway='funicular'],[railway='preserved'] {
       line-width: 3; line-color: @lightrail;
     }
   }
