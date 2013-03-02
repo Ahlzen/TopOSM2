@@ -8,19 +8,23 @@ Map {
     point-transform: scale(5.0, 5.0);
     text-name: "[name]";
     text-dy: 9;
-    text-face-name: @peakFont; /// <- todo: fix
-    text-size: 10;
+    text-face-name: @peakFont;
+    text-size: 12;
     text-fill: @peakColor;
+    text-halo-fill: @peakHalo;
+    text-halo-radius: 1.5;
     [zoom >= 14] {
        point-transform: scale(6.0, 6.0);
        text-dy: 8;
-       text-size: 11;
+       text-size: 13;
        ::elevation [ele_ft!=""] {
          text-name: [ele_ft] + ' ft';
-         text-face-name: @peakFont; /// <- todo: fix
-         text-size: 10;
-         text-dy: 21;
+         text-face-name: @peakEleFont;
+         text-size: 12;
+         text-dy: 22;
          text-fill: @peakColor;
+         text-halo-fill: @peakHalo;
+         text-halo-radius: 1.5;
        }
     }
 }

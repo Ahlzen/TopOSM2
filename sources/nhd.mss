@@ -206,11 +206,11 @@ Map {
   text-face-name: @hydroFont;
   text-fill: @waterline;
   text-halo-fill: @waterfill;
-  text-halo-radius: 1;
+  text-halo-radius: 1.5;
   text-placement: line;
   text-spacing: 600;
   text-min-distance: 100;
-  text-max-char-angle-delta: 20;
+  text-max-char-angle-delta: 18;
   [zoom<=11] { text-size: 11; }
   [zoom=12] { text-size: 12; }
   [zoom>=13] { text-size: 13; }

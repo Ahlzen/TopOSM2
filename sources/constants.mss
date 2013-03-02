@@ -23,7 +23,9 @@
 
 /* Mountain peaks */
 @peakColor:             #643;
-@peakFont:              "DejaVu Serif Book"; // <-- TODO: Fix
+@peakFont:              "Liberation Serif Regular";
+@peakEleFont:           "Liberation Serif Italic";
+@peakHalo:              desaturate(lighten(@peakColor, 60%), 50%);
 
 /* Point features */
 @pointFeatureFont:      "Liberation Sans Regular";
