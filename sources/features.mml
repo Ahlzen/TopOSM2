@@ -5,7 +5,8 @@
     "transport.mss",
     "borders.mss",
     "placenames.mss",
-    "pointfeatures.mss"
+    "pointfeatures.mss",
+    "areafeatures.mss"
   ],
   "Layer": [
     {
@@ -15,6 +16,19 @@
       "Datasource": {
         "type": "postgis",
         "table": "(SELECT way, name,ref,way_area FROM ${DB_PREFIX}_polygon WHERE \"boundary\" = 'administrative' AND admin_level='4') AS statePoly",
+        "extent": "${EXTENTS_MERCATOR}",
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}",
+        "user": "${DB_USER}"
+      }
+    },
+    {
+      "name": "buildings",
+      "id": "buildings",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, name FROM ${DB_PREFIX}_polygon WHERE building IS NOT NULL) AS buildings",
         "extent": "${EXTENTS_MERCATOR}",
         "host": "${DB_HOST}",
         "dbname": "${DB_NAME}",
