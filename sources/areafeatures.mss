@@ -2,7 +2,7 @@ Map {
   background-color: transparent;
 }
 
-[zoom >= 12] #buildings
+#buildings [zoom >= 12]
 {
   polygon-fill: @buildingColor;
   [zoom = 12] { polygon-opacity: 0.3; }
