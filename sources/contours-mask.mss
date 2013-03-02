@@ -2,10 +2,12 @@ Map {
   background-color: @maskHidden;
 }
 
-[zoom >= 15]
+[zoom >= 14]
 #contours50 {
+
   line-color: @maskVisible;
   line-width: @contourWidth;
+  [zoom=14] { line-width: @contourWidth * 0.5; }
   line-smooth: @contourSmooth;
 }
 
