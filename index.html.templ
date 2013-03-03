@@ -58,10 +58,15 @@ var features = L.tileLayer(tileurl, {name: 'features'});
 var toposmCarto2 = L.tileLayer(tileurl, {name: 'toposmCarto2'});
 var toposmCarto2B = L.tileLayer(tileurl, {name: 'toposmCarto2B'});
 
+// Get map coordinates from URL, or use defaults:
+var lat = getUrlVars()["lat"] || 37.83;
+var lon = getUrlVars()["lon"] || -119.46;
+var z = getUrlVars()["z"] || 13;
+
 var map = L.map('map', {
-  center: new L.LatLng(37.8, -122.3),
-  zoom: 10,
-  layers: [landcoverLightened]
+  center: new L.LatLng(lat, lon),
+  zoom: z,
+  layers: [toposmCarto2B]
 });
 
 var baseLayers = {
@@ -98,9 +103,19 @@ function updateZoomLevel() {
    z = map.getZoom();
    document.getElementById('zoom').innerHTML = 'z' + z;
 }  
+
 function updateLatLong(ll) {
    document.getElementById('latlon').innerHTML =
       ll.lat.toFixed(3) + ', ' + ll.lng.toFixed(3);
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 }
 
 </script>
