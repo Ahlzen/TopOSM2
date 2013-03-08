@@ -11,12 +11,8 @@
       "id": "contours50",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
-        "type": "postgis",
-        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE}) AS contours",
-        "extent": "${EXTENTS_MERCATOR}",
-        "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}",
-        "user": "${DB_USER}"
+        ${DBSETTINGS},
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE}) AS contours"
       }
     },
     {
@@ -24,12 +20,8 @@
       "id": "contours200",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
-        "type": "postgis",
-        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 200) = 0) AS contours\n",
-        "extent": "${EXTENTS_MERCATOR}",
-        "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}",
-        "user": "${DB_USER}"
+        ${DBSETTINGS},
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 200) = 0) AS contours"
       }      
     },
     {
@@ -37,12 +29,8 @@
       "id": "contours1000",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
-        "type": "postgis",
-        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 1000) = 0) AS contours",
-        "extent": "${EXTENTS_MERCATOR}",
-        "host": "${DB_HOST}",
-        "dbname": "${DB_NAME}",
-        "user": "${DB_USER}"
+        ${DBSETTINGS},
+        "table": "(SELECT way, height_ft FROM ${CONTOURS_TABLE} WHERE (height_ft % 1000) = 0) AS contours"
       }
     }
   ]
