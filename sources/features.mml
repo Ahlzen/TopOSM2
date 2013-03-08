@@ -58,7 +58,7 @@
         "host": "${DB_HOST}",
         "dbname": "${DB_NAME}",
         "user": "${DB_USER}",
-        "table": "(SELECT way,highway,substring(ref from '^I[ -]([0-9A]+)') AS interstate,substring(ref from '^US[ -]([0-9A]+)') AS usroute FROM ${DB_PREFIX}_roads WHERE highway IN ('motorway','trunk','primary')) AS r"
+        "table": "(SELECT way,highway FROM ${DB_PREFIX}_roads WHERE highway IN ('motorway','trunk','primary')) AS r"
       }
     },
     {
@@ -71,7 +71,20 @@
         "host": "${DB_HOST}",
         "dbname": "${DB_NAME}",
         "user": "${DB_USER}",
-        "table": "(SELECT way,highway,name,substring(ref from '^I[ -]([0-9A]+)') AS interstate,substring(ref from '^US[ -]([0-9A]+)') AS usroute,bridge, CASE WHEN tunnel = 'yes' THEN 'yes' ELSE 'no' END AS tunnel, bicycle, oneway, railway, CASE WHEN bridge = 'yes' THEN UNNEST(ARRAY[1,2]) ELSE 2 END AS pass, CASE WHEN highway LIKE '%_link' THEN true ELSE false END AS link FROM ${DB_PREFIX}_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','residential','unclassified','service','track','path','footway','cycleway','motorway_link','primary_link','secondary_link') OR railway IN ('rail','light_rail','preserved','subway','tram','funicular','monorail') ORDER BY FLOOR(z_order * 0.1), link DESC, z_order, pass) AS r"
+        "table": "(SELECT way,highway,bridge,tunnel,bicycle,oneway,railway, CASE WHEN bridge = 'yes' THEN UNNEST(ARRAY[1,2]) ELSE 2 END AS pass, CASE WHEN highway LIKE '%_link' THEN true ELSE false END AS link FROM ${DB_PREFIX}_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','residential','unclassified','service','track','path','footway','cycleway','motorway_link','primary_link','secondary_link') OR railway IN ('rail','light_rail','preserved','subway','tram','funicular','monorail') ORDER BY FLOOR(z_order * 0.1), link DESC, z_order, pass) AS r"
+      }
+    },
+    {
+      "name": "peaks",
+      "id": "peaks",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way FROM ${DB_PREFIX}_point WHERE \"natural\" = 'peak') AS peaks",
+        "extent": "${EXTENTS_MERCATOR}",
+        "dbname": "${DB_NAME}",
+        "host": "${DB_HOST}",
+        "user": "${DB_USER}"
       }
     },
     {
@@ -88,12 +101,12 @@
       }
     },
     {
-      "name": "peaks",
-      "id": "peaks",
+      "name": "peakLabels",
+      "id": "peakLabels",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, name, CAST(ROUND(CASE WHEN ele SIMILAR TO '[0-9. ]+m' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC)*3.2787 WHEN ele SIMILAR TO '[0-9. ]+ft' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)-1) AS NUMERIC) WHEN ele SIMILAR TO '[0-9. ]+''' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC) WHEN ele SIMILAR TO '[0-9.]+' THEN CAST(ele AS NUMERIC)*3.2787 ELSE null END, 0) AS INT) AS ele_ft FROM ${DB_PREFIX}_point WHERE \"natural\" = 'peak') AS peaks",
+        "table": "(SELECT way, name, CAST(ROUND(CASE WHEN ele SIMILAR TO '[0-9. ]+m' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC)*3.2787 WHEN ele SIMILAR TO '[0-9. ]+ft' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)-1) AS NUMERIC) WHEN ele SIMILAR TO '[0-9. ]+''' THEN CAST(SUBSTR(ele, 0, LENGTH(ele)) AS NUMERIC) WHEN ele SIMILAR TO '[0-9.]+' THEN CAST(ele AS NUMERIC)*3.2787 ELSE null END, 0) AS INT) AS ele_ft FROM ${DB_PREFIX}_point WHERE \"natural\" = 'peak' AND name IS NOT NULL) AS peaks",
         "extent": "${EXTENTS_MERCATOR}",
         "dbname": "${DB_NAME}",
         "host": "${DB_HOST}",
@@ -106,7 +119,46 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT way, name, landuse, tourism, amenity, access FROM ${DB_PREFIX}_point WHERE tourism IN ('alpine_hut', 'viewpoint', 'picnic_site', 'camp_site', 'campground', 'information', 'map') OR amenity IN ('shelter', 'toilets', 'restrooms', 'drinking_water') OR landuse = 'quarry' OR (amenity = 'parking' AND NOT access IN ('private','destination','no'))) AS pointfeatures",
+        "table": "(SELECT way, landuse, tourism, amenity, access FROM ${DB_PREFIX}_point WHERE tourism IN ('alpine_hut', 'viewpoint', 'picnic_site', 'camp_site', 'campground', 'information', 'map') OR amenity IN ('shelter', 'toilets', 'restrooms', 'drinking_water') OR landuse = 'quarry' OR (amenity = 'parking' AND NOT access IN ('private','destination','no'))) AS pointfeatures",
+        "extent": "${EXTENTS_MERCATOR}",
+        "dbname": "${DB_NAME}",
+        "host": "${DB_HOST}",
+        "user": "${DB_USER}"
+      }
+    },
+    {
+      "name": "transportShieldsLowzoom",
+      "id": "transportShieldsLowzoom",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "extent": "${EXTENTS_MERCATOR}",
+        "type": "postgis",
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}",
+        "user": "${DB_USER}",
+        "table": "(SELECT way,highway,substring(ref from '^I[ -]([0-9A]+)') AS interstate,substring(ref from '^US[ -]([0-9A]+)') AS usroute FROM ${DB_PREFIX}_roads WHERE highway IN ('motorway','trunk','primary')) AS r"
+      }
+    },
+    {
+      "name": "transportShieldsAndLabelsHizoom",
+      "id": "transportShieldsAndLabelsHizoom",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "extent": "${EXTENTS_MERCATOR}",
+        "type": "postgis",
+        "host": "${DB_HOST}",
+        "dbname": "${DB_NAME}",
+        "user": "${DB_USER}",
+        "table": "(SELECT way,highway,name,substring(ref from '^I[ -]([0-9A]+)') AS interstate,substring(ref from '^US[ -]([0-9A]+)') AS usroute FROM ${DB_PREFIX}_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','residential','unclassified','service','track','path','footway','cycleway','motorway_link','primary_link','secondary_link') OR railway IN ('rail','light_rail','preserved','subway','tram','funicular','monorail') ORDER BY z_order) AS r"
+      }
+    },
+    {
+      "name": "pointfeatureLabels",
+      "id": "pointfeatureLabels",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way, name FROM ${DB_PREFIX}_point WHERE tourism IN ('alpine_hut', 'viewpoint', 'picnic_site', 'camp_site', 'campground', 'information', 'map') OR amenity IN ('shelter', 'toilets', 'restrooms', 'drinking_water') OR landuse = 'quarry' OR (amenity = 'parking' AND NOT access IN ('private','destination','no')) AND name IS NOT NULL) AS pointfeatures",
         "extent": "${EXTENTS_MERCATOR}",
         "dbname": "${DB_NAME}",
         "host": "${DB_HOST}",

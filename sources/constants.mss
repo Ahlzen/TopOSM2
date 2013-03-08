@@ -27,6 +27,10 @@
 @peakEleFont:           "Liberation Serif Italic";
 @peakHalo:              desaturate(lighten(@peakColor, 60%), 50%);
 
+/* Place names */
+@placenameFont:         "DejaVu Serif Book";
+@placenameColor:        #640;
+
 /* Point features */
 @pointFeatureFont:      "Liberation Sans Regular";
 

@@ -2,22 +2,25 @@ Map {
   background-color: transparent;
 }
 
-[zoom>=13] #peaks
+#peaks [zoom>=13]
 {
-    point-file: url(../symbols/peak.svg);
-    point-transform: scale(5.0, 5.0);
-    text-name: "[name]";
-    text-dy: 9;
-    text-face-name: @peakFont;
-    text-size: 12;
-    text-fill: @peakColor;
-    text-halo-fill: @peakHalo;
-    text-halo-radius: 1.5;
-    [zoom >= 14] {
-       point-transform: scale(6.0, 6.0);
-       text-dy: 8;
-       text-size: 13;
-       ::elevation [ele_ft!=""] {
+   point-file: url(../symbols/peak.svg);
+   point-transform: scale(5.0, 5.0);
+   [zoom >= 14] { point-transform: scale(6.0, 6.0); }
+}
+
+#peakLabels [zoom>=13]
+{
+   text-name: "[name]";
+   text-dy: 8;
+   text-face-name: @peakFont;
+   text-size: 12;
+   text-fill: @peakColor;
+   text-halo-fill: @peakHalo;
+   text-halo-radius: 1.5;
+   [zoom >= 14] {
+      text-size: 13;
+      ::elevation [ele_ft!=""] {
          text-name: [ele_ft] + ' ft';
          text-face-name: @peakEleFont;
          text-size: 12;
@@ -25,11 +28,11 @@ Map {
          text-fill: @peakColor;
          text-halo-fill: @peakHalo;
          text-halo-radius: 1.5;
-       }
-    }
+      }
+   }
 }
 
-[zoom >= 13] #pointfeatures
+#pointfeatures [zoom >= 13]
 {
    // pick icon depending on feature type
    point-file: url(../symbols/question.svg); // not used ; indicates that we missed a feature type
@@ -52,16 +55,18 @@ Map {
    [zoom = 14] { point-transform: scale(0.5, 0.5); }
    [zoom = 15] { point-transform: scale(0.6, 0.6); }
    [zoom >= 16] { point-transform: scale(0.65, 0.65); }
-   
-   // show labels at high zoom levels
-   [zoom >= 15][name != ''] {
-    text-face-name: @pointFeatureFont;
-    text-fill: #000;
-    text-name: "[name]";
-    text-size: 10;
-    [zoom >= 16]  { text-size: 11; }
-    text-halo-fill: #ccc;
-    text-halo-radius: 1;
-    text-dy: 14;
-   }
 }
+
+#pointfeatureLabels [zoom >= 15]
+{
+   // show labels at high zoom levels
+   text-face-name: @pointFeatureFont;
+   text-fill: #000;
+   text-name: "[name]";
+   text-size: 11;
+   [zoom >= 16]  { text-size: 12; }
+   text-halo-fill: #ccc;
+   text-halo-radius: 1;
+   text-dy: 14;
+}
+

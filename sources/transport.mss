@@ -2,8 +2,8 @@ Map {
   background-color: transparent;
 }
 
-[zoom>=5][zoom<=8]
-#transportLowzoom {
+#transportLowzoom [zoom>=5][zoom<=8]
+{
   line-width: 0;
   [highway='motorway'] { line-color: @interstatelowzoom; }
   [highway='trunk']    { line-color: @trunklowzoom; }
@@ -27,7 +27,10 @@ Map {
     [highway='trunk']    { line-width: 1.5; }
     [highway='primary']  { line-width: 0.7; }
   }
-   
+}
+
+#transportShieldsLowzoom [zoom>=5][zoom<=8]
+{
   ::interstateShields [interstate!=''][zoom>=6][zoom<=8],
   ::usShields [usroute!=''][zoom>=7][zoom<=8]
   {
@@ -53,6 +56,8 @@ Map {
   }
 }
 
+
+
 /*
 Outlines for roads, railways, trails etc.
 NOTE: In the case where a line has no fill, it is
@@ -62,8 +67,7 @@ Rail (of several types) are included here as
 well to ensure that the vertical layering is
 handled correctly.
 */
-[zoom>=9]
-#transportHizoom::outline
+#transportHizoom::outline [zoom>=9]
 {
   line-width: 0;
   line-color: @roadcase;
@@ -164,7 +168,7 @@ handled correctly.
     [tunnel='yes']             { line-dasharray: 8,5; line-cap: butt; line-color: @railroad; }
     [railway='rail'] {
       line-width: 1.3;
-      ::ties[tunnel='no'] { line-width: 4.5; line-dasharray: 1.3, 12; }
+      ::ties[tunnel!='yes'] { line-width: 4.5; line-dasharray: 1.3, 12; }
     }
     [railway='light_rail'],[railway='tram'],[railway='monorail'],
     [railway='subway'],[railway='funicular'],[railway='preserved'] {
@@ -204,11 +208,9 @@ handled correctly.
 }
 
 /*
-Road fills.
-Bridge outlines, shields and labels are included here too.
+Road fills, bridge outlines, etc
 */
-[zoom>=9]
-#transportHizoom
+#transportHizoom [zoom>=9]
 {
   line-width: 0; // don't fill unless explicitly spec:d
   line-color: @smallroad; // default road fill
@@ -333,7 +335,10 @@ Bridge outlines, shields and labels are included here too.
       [highway='secondary_link'] { line-width: 9; }
     }
   }
-  
+}
+
+#transportShieldsAndLabelsHizoom [zoom>=9]
+{
   // Shields
   ::interstateShields [interstate!=''],
   ::usShields [usroute!='']
