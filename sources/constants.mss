@@ -31,6 +31,11 @@
 @placenameFont:         "DejaVu Serif Book";
 @placenameColor:        #640;
 
+/* Parks */
+@parkFont:              "DejaVu Serif Book";
+@parkColor:             #040;
+@parkHalo:              #dfd;
+
 /* Point features */
 @pointFeatureFont:      "Liberation Sans Regular";
 
