@@ -41,6 +41,10 @@
 /* Hydrography */
 @waterline:             #1e6ea3;
 @waterfill:             #d1e8f8;
+@hydroFont:             "Gentium Basic Bold Italic",
+                        "Bitstream Charter Bold Italic",
+                        "DejaVu Serif Bold Italic";
+@hydroSymbolFont:       "DejaVu Sans Book";
 
 /* Aviation */
 @aeroway:               #99a;
@@ -168,9 +172,9 @@
 @nhdSpillway:            45500;
 @nhdSpringSeep:          45800;
 @nhdStreamRiver:         46000;
-@nhdStreamRiver_Intermittent: 46003;
-@nhdStreamRiver_Perennial: 46006;
-@nhdStreamRiver_Ephemeral: 46007;
+@nhdStreamRiverIntermittent: 46003;
+@nhdStreamRiverPerennial: 46006;
+@nhdStreamRiverEphemeral: 46007;
 @nhdSubmergedStream:     46100;
 @nhdSwampMarsh:          46600;
 @nhdSwampMarsh_Intermittent: 46601;
