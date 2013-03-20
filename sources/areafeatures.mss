@@ -35,39 +35,37 @@ Map {
   line-dasharray: 2, 2, 5, 2;
 }
  
-#parkLabels [zoom >= 10]
+#parkLabels [zoom >= 8]
 {
-  // Exclude very small areas
-  [way_area > 10]
-  {
-     [zoom >= 10][zoom <= 13]
-     {
-        // Center labels
-        text-face-name: @parkFont;
-        text-halo-fill: @parkHalo;
-        text-halo-radius: 1.5;
-        text-fill: @parkColor;
-        text-name: "[name]";
-        text-size: 11;
-     }
-     [zoom >= 14]
-     {
-        // Boundary labels
-        text-face-name: @parkFont;
-        /*
-        text-halo-fill: @parkHalo;
-        text-halo-radius: 1.5;
-        */
-        text-fill: @parkColor;
-        text-name: "[name]";
-        text-size: 10;
-        text-placement: line;
-        text-dy: -14;
-        text-spacing: 600;
-        text-min-distance: 600;
-        text-max-char-angle-delta: 20;
-        text-character-spacing: 2;
-     }
-  }
+ [zoom >= 10][zoom <= 11][way_area > 10000000],
+ [zoom >= 12][zoom <= 13][way_area > 2000000]
+ {
+    // Center labels
+    text-face-name: @parkFont;
+    text-halo-fill: @parkHalo;
+    text-halo-radius: 1.5;
+    text-fill: @parkColor;
+    text-name: "[name]";
+    text-size: 10;
+    [zoom >= 12] { text-size: 11; }
+ }
+ [zoom >= 14][way_area > 500000]
+ {
+    // Boundary labels
+    text-face-name: @parkFont;
+    /*
+    text-halo-fill: @parkHalo;
+    text-halo-radius: 1.5;
+    */
+    text-fill: @parkColor;
+    text-name: "[name]";
+    text-size: 10;
+    text-placement: line;
+    text-dy: -14;
+    text-spacing: 600;
+    text-min-distance: 600;
+    text-max-char-angle-delta: 20;
+    text-character-spacing: 2;
+ }
 }
 
