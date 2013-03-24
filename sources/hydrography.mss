@@ -145,30 +145,32 @@ Map {
 }
 
 
-// TODO: Make this layer work...
-#nhdPoint [zoom>=11] {
-  marker-width: 0;
-  marker-line-width: 0;
-  marker-allow-overlap: true;  
-
+#nhdPoint [zoom>=15]
+{
   // Dam/weir
   [fcode=34300],
   [fcode=34305],
   [fcode=34306] {
-    marker-width: 5;
-    marker-fill: red;
+    marker-width: 4;
+    marker-line-width: 0;
+    marker-fill: @waterline;
+    marker-allow-overlap: true;
   }
 
   // Well
   [fcode=48800] {
     marker-width: 5;
-    marker-fill: cyan;
+    marker-line-color: @waterline;
+    marker-line-width: 1.5;
+    marker-fill: @waterfill;
+    marker-allow-overlap: true;
   }
 
   // Gaging station
   [fcode=36700] {
-    marker-width: 5;
-    marker-fill: lime;
+    point-file: url(../symbols/gaging-station-blue.svg);
+    point-transform: scale(0.35, 0.35);
+    point-allow-overlap: true;
   }
 }
 
