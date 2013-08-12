@@ -88,7 +88,7 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "Datasource": {
         ${DBSETTINGS},
-        "table": "(SELECT way, name, way_area, leisure, landuse, \"natural\" FROM ${DB_PREFIX}_polygon WHERE landuse IN ('forest','vineyard','conservation','recreation_ground','village_green','cemetery') OR leisure IN ('nature_reserve','park','common','recreation_ground','playground','garden','golf course')) AS parks"
+        "table": "(SELECT way, name, way_area, leisure, landuse, \"natural\" FROM ${DB_PREFIX}_polygon WHERE landuse IN ('forest','vineyard','conservation','recreation_ground','village_green','cemetery') OR leisure IN ('nature_reserve','park','common','recreation_ground','playground','garden','golf_course')) AS parks"
       }
     },
     {
